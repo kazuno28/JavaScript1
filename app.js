@@ -139,3 +139,39 @@ for(i = 1; i < 11; i++){
 }
 
 alert('1から10まで足し算した結果は' + num + 'です。'); */
+
+// <変数宣言について>
+// ・JavaScriptの変数宣言は3種類ある。
+// 【var】【let】【const】
+// 　　→【var】を使う場面はほとんどない
+// 　　→constは慣例的にすべて大文字とすることもあるが、小文字でも宣言できる。
+
+
+// <再宣言>
+// ・一度、宣言した変数名で再度、変数宣言を行うことを再宣言という。
+
+// varによる再宣言
+/* var nickname = "taro"
+console.log(nickname)
+var nickname = "ichiro"
+console.log(nickname) */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→varでの再宣言は問題ない。
+
+// letによる再宣言
+/* let nickname = "taro"
+console.log(nickname)
+let nickname = "ichiro"
+console.log(nickname) */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→「Uncaught SyntaxError: Identifier 'nickname' has already been declared」（'nickname'という変数は既に宣言されている）と、エラーが出る。
+// 　　→letでは再宣言できない。
+
+// constによる再宣言
+/* const nickname = "taro"
+console.log(nickname)
+const nickname = "ichiro"
+console.log(nickname) */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→letの時と同様のエラーが出た。
+// 　　→constの場合でも再宣言はできない。
