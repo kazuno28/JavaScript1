@@ -175,3 +175,35 @@ console.log(nickname) */
 // デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
 // 　　→letの時と同様のエラーが出た。
 // 　　→constの場合でも再宣言はできない。
+
+
+// <再代入>
+// ・変数に値を代入した後で、別の値を代入することを再代入と言う。
+// ・再代入はvarとletで、可能。constでは再代入できない。
+
+// varによる再代入
+/* var nickname = "taro"
+console.log(nickname)
+nickname = "jiro"
+console.log(nickname) */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→4行目でnickname = "jiro"と再代入を行っていて、5行目でconsoleへ出力している。
+// 　　→再代入が反映されていることが確認できた。
+
+// letによる再代入
+/* let nickname = "taro"
+console.log(nickname)
+nickname = "jiro"
+console.log(nickname) */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→varと同様の結果が確認できた。
+
+// constによる再代入
+/* const nickname = "taro"
+console.log(nickname)
+nickname = "jiro"
+console.log(nickname) */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→「Uncaught TypeError: Assignment to constant variable. at sample.js:4」というエラーが確認できた。
+// 　　　エラーの内容は定数とした変数には割り当てできないというもの。
+// 　　→constでは再宣言と再代入ができない。
