@@ -140,6 +140,7 @@ for(i = 1; i < 11; i++){
 
 alert('1から10まで足し算した結果は' + num + 'です。'); */
 
+
 // <変数宣言について>
 // ・JavaScriptの変数宣言は3種類ある。
 // 【var】【let】【const】
@@ -265,9 +266,51 @@ console.log(i) */
 // <constのスコープ>
 // 　→constのスコープはletと同じブロックスコープになる。
 
+
 // <<一覧表>>
 /* 　　　　　【var】　　【let】　　【const】
 【再宣言】　　　〇　　　　　✕　　　　　✕
 【再代入】　　　〇　　　　　〇　　　　　✕　
 【スコープ】　　関数　　　ブロック　　ブロック */
 
+
+// <巻き上げ>
+// 　→JavaScripには変数の巻き上げ（ホイスティング）がある。
+
+/* var str = "webcamp"
+
+function foo() {
+  console.log(str)
+  var str = "dmm webcamp"
+  console.log(str)
+}
+
+foo() */
+// デベロッパツール（検証ツール）の、console.logを使用するとConsoleタブの中に値が展開される。
+// 　　→最初のconsole.logで、「undefined」が出力されている。
+// 　・何故か…　
+// 　　1行目はグローバルスコープのstrという変数に「webcamp」を格納してる。
+// 　　グローバルスコープはどこからでも参照できる有効範囲を持っているので、初めのconsole.log(str)では「webcamp」と出力されるはず…
+// 　　しかし、「undefined」が出力されている。
+// 　　　→この現象の裏には変数の巻き上げが隠れている。
+/* var str = "webcamp"
+
+function foo() {
+  var str
+  console.log(str)
+  str = "dmm webcamp"
+  console.log(str)
+}
+
+foo() */
+// ↑このコードは、さっきのコードと同様の内容になっている。
+// 　→関数に冒頭にvar strがある。
+// 　 さっきのコードでは5行目にvar str = "dmm webcamp"とあったが、内部的にはvar strの変数宣言の部分が巻き上げられる。
+
+// ・変数の巻き上げとは関数内のどの部分で変数を宣言したとしても、関数冒頭で変数を宣言したことになる。
+// ・今回の場合、グローバルスコープのstrという変数と、関数スコープのstrという同名の変数が存在するが、console.log(str)が関数内で使用されているため、関数スコープのstrが参照される。
+// 　→初めのconsole.logで参照されたstrは、宣言されたのみの変数で値は代入されていない。　結果、「undefined」と出力される。
+// 　 （厳密には、varによって宣言された変数に初期値を入れない場合には自動的にundefinedを初期値として代入する。）
+// ・letやconstの場合も同様に変数の巻き上げが起こる。
+// 　しかし…
+// 　letやconstでは変数の初期化を行わずに、宣言のみした場合、それを参照すると「Uncaught ReferenceError: Cannot access '変数名' before initialization」という エラー になる。
